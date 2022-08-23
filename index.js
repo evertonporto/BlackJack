@@ -4,6 +4,7 @@ let player = {
 }
 
 let cards = [];
+let cardDealer= [];
 let sum = 0
 let hasBlackJack = false
 let isAlive = false
@@ -12,7 +13,7 @@ let messageEl = document.getElementById("message-el")
 let sumEl = document.getElementById("sum-el")
 let cardsEl = document.getElementById("cards-el")
 let playerEl = document.getElementById("player-el")
-
+let dealerEl = document.getElementById("dealer-el")
 
 playerEl.textContent = player.name + ": $ " + player.chips
 
@@ -30,18 +31,28 @@ function getRandomCard() {
 function startGame() {
     let firstCard = getRandomCard();
     let secondCard = getRandomCard();
+    let fourthCard = getRandomCard();
+    let fifthCard = getRandomCard();
     cards = [firstCard, secondCard]
+    cardDealer = [fourthCard, fifthCard]
     sum = firstCard + secondCard
     isAlive = true
     renderGame()
+    
 }
 
 function renderGame() {
     sumEl.textContent = "Sum: " + sum
     cardsEl.textContent = "Cards: "
+    dealerEl.textContent = "Dealer Hand: " + cardDealer
+    
+    for (let i = 0; i < cardDealer.length; i++) {
+        cardDealer.textContent += " " + cardDealer[i]
+    }
 
     for (let i = 0; i < cards.length; i++) {
         cardsEl.textContent += " " + cards[i]
+    
     }
 
     if (sum <= 20) {
@@ -66,3 +77,7 @@ function drawCard() {
     }
 }
 
+// function dealerHand(){
+//     getRandomCard()
+    
+// }
